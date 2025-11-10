@@ -25,7 +25,8 @@ SECRET_KEY = 'django-insecure-67r0_ty32%-^mg(%pb49ki%z=59^e7*o5gw24yr6+$2stss+ai
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['eaatransport.onrender.com']
+
 
 
 # Application definition
@@ -38,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'application',
+
 ]
 
 MIDDLEWARE = [
@@ -51,6 +53,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'transport.urls'
+
+
 
 TEMPLATES = [
     {
