@@ -1,0 +1,180 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+{% endblock %}
+
+{% block content %}
+{% include 'navbar.html' %}
+
+<!-- Hero Carousel -->
+<div id="heroCarousel" class="carousel slide" data-bs-ride="carousel" style="margin-top: 56px;">
+  <div class="carousel-inner">
+
+    {% for slide in carousel_images %}
+    <div class="carousel-item {% if forloop.first %}active{% endif %}">
+      <img src="{{ slide.image.url }}" class="d-block w-100" alt="Slide {{ forloop.counter }}">
+      <div class="carousel-caption d-none d-md-block">
+        {% if forloop.counter == 1 %}
+        <h1>Flotë Moderne & Ekip me eksperiencë</h1>
+        <p>Të nxitur nga cilësia dhe përkushtimi ndaj klientëve tanë!</p>
+        <a href="#services" class="btn btn-warning text-dark fw-bold">Learn More</a>
+        {% elif forloop.counter == 2 %}
+        <h1>Transport i besueshëm dhe i sigurt</h1>
+        <p>Transport ndërkombëtar pa pengesa, për ju dhe makinën tuaj</p>
+        <a href="{% url 'contactus' %}" class="btn btn-light fw-bold">Contact Us</a>
+        {% elif forloop.counter == 3 %}
+        <h1>Flotë Moderne & Ekip me Përvojë</h1>
+        <p>I udhëhequr nga cilësia dhe përkushtimi ndaj klientëve tanë</p>
+        <a href="#about" class="btn btn-warning text-dark fw-bold">About Us</a>
+        {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+
+  </div>
+
+  <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </button>
+</div>
+
+
+
+
+<!-- About Section -->
+<section id="about" class="container my-5" style="font-family: 'Roboto', sans-serif;">
+  <div class="row align-items-center">
+    <div class="col-md-6">
+      <img src="{% static 'image/aa.jpg' %}" class="img-fluid rounded shadow-sm" alt="Rreth Nesh">
+    </div>
+    <div class="col-md-6 about-text">
+      <h2 class="fw-bold text-primary mb-4">Rreth Nesh</h2>
+      <p class="lead text-muted mb-4">
+        EMPOWER TRANSPORT është kompania juaj e besueshme për autotransport ndërkombëtar automjetesh nga Gjermania,
+        Holanda dhe Belgjika drejt Shqipërisë dhe anasjelltas. Ne ofrojmë shërbime të sigurta, të shpejta dhe
+        profesionale, duke u fokusuar tek kënaqësia e klientëve dhe mbërritja e automjeteve në gjendje të përsosur.
+        Përveç shpejtësisë dhe sigurisë, ne vlerësojmë komunikimin e qartë dhe mbështetjen e vazhdueshme gjatë gjithë
+        procesit të transportit, për të bërë çdo eksperiencë me EMPOWER TRANSPORT sa më të lehtë dhe të kënaqshme.
+      </p>
+      <a href="#services" class="btn btn-primary btn-lg">Shiko Shërbimet Tona</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- Video Tips -->
+<main>
+
+  <div
+    style="position: relative; padding: 40px 0; background-color: #f8f9fa; border-radius: 15px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+    <h2 class="text-center mb-4"
+      style="font-size: 2rem; font-weight: 600; color: #100f10; font-family: Georgia, 'Times New Roman', Times, serif;">
+      Vidiot tona:
+    </h2>
+
+    <!-- Video Carousel -->
+    <div id="videoTipsCarousel" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        {% for video in videos %}
+        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+          <div class="d-flex justify-content-center">
+            <div class="video-item"
+              style="flex-shrink: 0; width: 350px;height: 550PX; border-radius: 20px; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+              <video controls autoplay muted loop style="width: 100%; border-radius: 10px;">
+                <source src="{{ video.video_file.url }}" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+      <!-- Navigation Buttons -->
+      <button class="carousel-control-prev" type="button" data-bs-target="#videoTipsCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"
+          style="background-color: #111011; padding: 15px; border-radius: 50%;"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#videoTipsCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"
+          style="background-color: #111011; padding: 15px; border-radius: 50%;"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+</main>
+
+
+<!-- Services Section -->
+<section id="services" class="bg-light py-5">
+  <div class="container text-center">
+    <h2 class="fw-bold text-primary mb-4">Shërbimet Tona</h2>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card shadow-sm">
+          <img src="{% static 'image/a.jpg' %}" class="card-img-top" alt="Transport Ndërkombëtar">
+          <div class="card-body">
+            <h5 class="card-title">Transport Ndërkombëtar</h5>
+            <p class="card-text">Ofrimi i transportit ndërkombëtar të automjeteve nga Gjermania, Holanda dhe Belgjika
+              drejt Shqipërisë dhe anasjelltas, me siguri dhe shpejtësi maksimale.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card shadow-sm">
+          <img src="{% static 'image/aa.jpg' %}" class="card-img-top" alt="Logjistikë">
+          <div class="card-body">
+            <h5 class="card-title">Logjistikë</h5>
+            <p class="card-text">Zgjidhje moderne logjistike për biznese dhe individë, duke garantuar që çdo transport
+              të planifikohet dhe ekzekutohet në mënyrë të organizuar dhe të besueshme.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card shadow-sm">
+          <img src="{% static 'image/aaa.jpg' %}" class="card-img-top" alt="Dogana">
+          <div class="card-body">
+            <h5 class="card-title">Procedura Doganore</h5>
+            <p class="card-text">Trajtimi i të gjitha procedurave doganore me profesionalizëm dhe kujdes, duke e bërë
+              procesin sa më të thjeshtë dhe të shpejtë për klientët tanë.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Parallax Section -->
+<section class="parallax" id="why">
+  <div class="overlay text-center text-white py-5">
+    <h2 class="fw-bold">Misioni Ynë</h2>
+    <p>Ne synojmë të ofrojmë shërbime të shkëlqyera transporti dhe logjistike në të gjithë Europën.
+      Me një ekip profesionistësh dhe një flotë moderne, sigurojmë që çdo transport të kryhet me shpejtësi, siguri dhe
+      pa stres për klientët tanë.
+      Përkushtimi ynë ndaj cilësisë dhe besueshmërisë na bën partnerin ideal për çdo biznes dhe individ që kërkon
+      transport të sigurt dhe të efektshëm.</p>
+  </div>
+</section>
+
+
+
+
+<!-- WhatsApp Floating Button -->
+<a href="https://wa.me/355698521600" class="whatsapp-float" target="_blank">
+  <i class="bi bi-whatsapp"></i>
+</a>
+
+<script>
+  window.addEventListener("scroll", function () {
+    const nav = document.querySelector("nav");
+    nav.classList.toggle("shadow", window.scrollY > 50);
+  });
+</script>
+{% endblock %}
